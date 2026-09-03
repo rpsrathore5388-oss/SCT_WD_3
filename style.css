@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background: #1e1e2f;
+    color: white;
+}
+
+.game-container {
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+
+    background: #292940;
+    padding: 30px;
+    border-radius: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-buttons button {
+    flex: 1;
+    padding: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #44445f;
+    color: white;
+
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.mode-buttons button:hover {
+    background: #555575;
+}
+
+.mode-buttons button.active {
+    background: #6c63ff;
+}
+
+#status {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    width: 100%;
+    max-width: 330px;
+
+    margin: auto;
+}
+
+.cell {
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #3a3a55;
+    border-radius: 10px;
+
+    font-size: 50px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cell:hover {
+    background: #484866;
+}
+
+.cell.x {
+    color: #ff6b6b;
+}
+
+.cell.o {
+    color: #63d8ff;
+}
+
+.cell.winner {
+    background: #4caf50;
+    color: white;
+}
+
+#restartBtn {
+    margin-top: 25px;
+
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #6c63ff;
+    color: white;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#restartBtn:hover {
+    background: #574fe0;
+}
+
+.score {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid #44445f;
+}
+
+.score div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.score span {
+    font-size: 13px;
+    color: #bbbbcc;
+}
+
+.score strong {
+    font-size: 22px;
+}
+
+@media (max-width: 450px) {
+
+    .game-container {
+        padding: 20px;
+    }
+
+    .cell {
+        height: 80px;
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
