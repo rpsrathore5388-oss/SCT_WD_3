@@ -20,8 +20,6 @@ let xScore = 0;
 let oScore = 0;
 let drawScore = 0;
 
-
-// All possible winning combinations
 const winningPatterns = [
     [0, 1, 2],
     [3, 4, 5],
@@ -35,20 +33,16 @@ const winningPatterns = [
     [2, 4, 6]
 ];
 
-
-// Handle player click
 cells.forEach((cell) => {
 
     cell.addEventListener("click", () => {
 
         const index = cell.getAttribute("data-index");
 
-        // Don't allow clicking an already filled box
         if (board[index] !== "" || gameOver) {
             return;
         }
 
-        // In computer mode, don't allow player to play O
         if (computerMode && currentPlayer === "O") {
             return;
         }
@@ -59,20 +53,16 @@ cells.forEach((cell) => {
             return;
         }
 
-        // Change player
         currentPlayer = currentPlayer === "X" ? "O" : "X";
 
         updateStatus();
 
-        // Computer's turn
         if (computerMode && currentPlayer === "O" && !gameOver) {
             setTimeout(computerMove, 500);
         }
     });
 });
 
-
-// Put X or O on the board
 function makeMove(index, player) {
 
     board[index] = player;
@@ -81,8 +71,6 @@ function makeMove(index, player) {
     cells[index].classList.add(player.toLowerCase());
 }
 
-
-// Check win or draw
 function checkGame() {
 
     for (let pattern of winningPatterns) {
@@ -99,7 +87,6 @@ function checkGame() {
 
             gameOver = true;
 
-            // Highlight winning cells
             cells[a].classList.add("winner");
             cells[b].classList.add("winner");
             cells[c].classList.add("winner");
@@ -120,7 +107,6 @@ function checkGame() {
         }
     }
 
-    // Check draw
     if (!board.includes("")) {
 
         gameOver = true;
@@ -136,7 +122,6 @@ function checkGame() {
 }
 
 
-// Update turn message
 function updateStatus() {
 
     if (computerMode && currentPlayer === "O") {
@@ -146,15 +131,12 @@ function updateStatus() {
     }
 }
 
-
-// Computer move
 function computerMove() {
 
     if (gameOver) {
         return;
     }
 
-    // Get empty cells
     const emptyCells = [];
 
     for (let i = 0; i < board.length; i++) {
@@ -167,7 +149,6 @@ function computerMove() {
         return;
     }
 
-    // Pick a random empty cell
     const randomIndex =
         emptyCells[Math.floor(Math.random() * emptyCells.length)];
 
@@ -181,8 +162,6 @@ function computerMove() {
     updateStatus();
 }
 
-
-// Restart the current game
 function restartGame() {
 
     board = ["", "", "", "", "", "", "", "", ""];
@@ -201,8 +180,6 @@ function restartGame() {
     updateStatus();
 }
 
-
-// Player vs Player mode
 playerModeBtn.addEventListener("click", () => {
 
     computerMode = false;
@@ -213,8 +190,6 @@ playerModeBtn.addEventListener("click", () => {
     restartGame();
 });
 
-
-// Player vs Computer mode
 computerModeBtn.addEventListener("click", () => {
 
     computerMode = true;
